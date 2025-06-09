@@ -1,0 +1,17 @@
+pypdf
+langchain
+together
+langchain-together
+python-dotenv
+chromadb
+fastapi
+uvicorn
+pydantic
+python-multipart
+gradio
+transformers
+tokenizers
+huggingface_hub
+accelerate
+peft
+langchain-community

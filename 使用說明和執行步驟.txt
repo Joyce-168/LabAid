@@ -1,0 +1,27 @@
+使用說明和執行步驟
+環境設置：
+
+1. 創建一個虛擬環境（如果還沒有的話）：python -m venv venv_hplc_ai
+    激活虛擬環境：
+    Windows: .\venv_xxxx\Scripts\activate
+
+2. 安裝依賴：pip install -r requirements.txt
+
+3. 重要：在你的項目根目錄下創建一個 .env 文件，並添加你的 Together AI API Key：
+   TOGETHER_API_KEY="YOUR_TOGETHER_AI_API_KEY"
+   將 YOUR_TOGETHER_AI_API_KEY 替換為你的實際 API Key。
+
+4.準備知識庫：
+
+   確保你在項目根目錄下有一個 input 文件夾，並且其中包含你的 PDF 文件，例如 input/ALS.pdf。
+   構建知識庫（只需運行一次）：
+   運行 setup_knowledge_base.py 來處理 PDF 文件、分塊、生成嵌入並填充 SQLite 和 ChromaDB 數據庫。
+
+6. 在終端中執行：python setup_knowledge_base.py 
+   這會創建 database/processed_documents.db 和 vector_db_chroma 目錄。
+   
+7. 啟動 Gradio 應用：
+   運行 app.py 來啟動前端 Gradio 界面。
+   在終端中執行：python app.py
+   Gradio 會在你的瀏覽器中打開一個本地鏈接 (例如 http://127.0.0.1:7860)。如果你設置了 share=True，還會生成一個公共鏈接。
+   Open your browser at http://127.0.0.1:8000/docs#/default/ask_rag_ask_post
