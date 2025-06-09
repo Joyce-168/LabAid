@@ -1,0 +1,79 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 嘗試使用類似字體 */
+    background-color: #f8faff; /* 接近圖片中的背景色 */
+}
+.gradio-container {
+    max-width: 1200px; /* 限制內容寬度 */
+    margin: auto;
+    padding: 20px;
+}
+h1, h2, h3, h4 {
+    color: #1a2b4b; /* 接近圖片中的標題顏色 */
+}
+p {
+    color: #4a5b7d; /* 接近圖片中的文本顏色 */
+}
+.gr-button {
+    background-color: #3b82f6; /* 藍色按鈕背景 */
+    color: white;
+    border-radius: 8px; /* 圓角按鈕 */
+    font-size: 1.1em;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+}
+.gr-button:hover {
+    background-color: #2563eb;
+}
+.card-container {
+    border: 1px solid #e0e6f0; /* 卡片邊框 */
+    border-radius: 12px;
+    padding: 20px;
+    background-color: white;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* 輕微陰影 */
+}
+.footer {
+    background-color: #1a2b4b;
+    color: #bec4d2;
+    padding: 40px 0;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 0.9em;
+}
+.footer a {
+    color: #a0a6b7;
+    text-decoration: none;
+    margin: 0 10px;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+/* 模擬圓形數字標記 */
+.circle-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #3b82f6;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0 auto 15px auto;
+}
+/* For chatbot header background */
+#chatbot-section {
+    background-color: #f8faff; /* Keep consistent background */
+    padding: 20px;
+    border-radius: 12px;
+    /* Optional: Add a subtle shadow if desired */
+    /* box-shadow: 0 4px 8px rgba(0,0,0,0.05); */
+}
+#chatbot-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e6f0; /* Separator */
+}
