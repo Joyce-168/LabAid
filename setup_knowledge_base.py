@@ -18,7 +18,7 @@ load_dotenv()
 
 def extract_text_from_pdf(pdf_path):
     """
-    從 PDF 文件中提取所有文字內容。
+    Extract all text content from PDF files.
     """
     text = ""
     try:
@@ -31,7 +31,7 @@ def extract_text_from_pdf(pdf_path):
 
 def clean_text_content(text):
     """
-    移除不相關的內容，例如版權資訊、法律聲明、冗長空白等。
+    Remove irrelevant content, such as copyright information, legal notices, and long blank spaces.
     """
     text = re.sub(r'\n\s*\n', '\n\n', text)
     text = re.sub(r'^\s*\d+\s*$', '', text, flags=re.MULTILINE)
@@ -44,7 +44,7 @@ def clean_text_content(text):
 
 def standardize_text_format(text):
     """
-    盡量將所有內容整理成清晰的段落。
+    Try to organize everything into clear paragraphs.
     """
     text = re.sub(r'([a-zA-Z])-(\n)([a-zA-Z])', r'\1\3', text)
     text = re.sub(r'([.?!])\s*([A-Z])', r'\1  \2', text)
@@ -190,7 +190,7 @@ def insert_chunks_to_db(db_path, document_id, chunks):
     conn.close()
     print(f"Saved {len(chunks)} chunks into the database for file ID {document_id}.")
 
-def generate_embeddings(texts, model_name="togethercomputer/m2-bert-80M-2k-retrieval"):
+def generate_embeddings(texts, model_name="togethercomputer/m2-bert-80M-32k-retrieval"):
     """
     Generates text embeddings using Together AI's embedding model.
     """
@@ -224,7 +224,7 @@ def get_chunks_from_db_for_embedding(db_path):
         if conn:
             conn.close()
 
-def load_chunks_to_vector_db(chunks_data, db_path="vector_db_chroma", collection_name="document_chunks", embeddings_model_name="togethercomputer/m2-bert-80M-2k-retrieval"):
+def load_chunks_to_vector_db(chunks_data, db_path="vector_db_chroma", collection_name="document_chunks", embeddings_model_name="togethercomputer/m2-bert-80M-32k-retrieval"):
     """
     Loads text chunks and their embeddings into a ChromaDB vector database.
     This function will now ADD chunks if they are new (based on their IDs).
@@ -285,7 +285,7 @@ if __name__ == "__main__":
     db_path = os.path.join(db_directory, "processed_documents.db")
     vector_db_dir = "vector_db_chroma"
     collection_name = "my_instrument_manual_chunks"
-    embeddings_model_name = "togethercomputer/m2-bert-80M-2k-retrieval" # 確保與 main.py 中使用的一致
+    embeddings_model_name = "togethercomputer/m2-bert-80M-32k-retrieval" # 確保與 main.py 中使用的一致
 
     # Create necessary directories
     os.makedirs(db_directory, exist_ok=True)

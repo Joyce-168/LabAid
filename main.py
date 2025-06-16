@@ -42,7 +42,7 @@ except Exception as e:
     print("Please check your TOGETHER_API_KEY and model name.")
 
 # --- Retriever Setup ---
-embeddings_model_name = "togethercomputer/m2-bert-80M-2k-retrieval" # 必須與 setup_knowledge_base.py 中使用的模型一致
+embeddings_model_name = "togethercomputer/m2-bert-80M-32k-retrieval" # 必須與 setup_knowledge_base.py 中使用的模型一致
 
 try:
     retriever_embeddings = TogetherEmbeddings(
