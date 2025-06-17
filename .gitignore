@@ -1,0 +1,26 @@
+# Created by venv; see https://docs.python.org/3/library/venv.html
+
+venv/
+private/
+input/
+
+# .gitignore 檔案內容範例
+
+# 忽略 Python 相關的編譯快取文件
+__pycache__/
+*.pyc
+*.sqlite3
+*.db
+__pycache__/
+*.pdf
+# 忽略 Node.js 模組
+node_modules/
+
+# 將 .env 文件加入忽略列表 - 這是最重要的一行
+.env
+
+# 忽略其他敏感或不需要版本控制的文件，例如：
+# credentials.json
+# *.log
+# temp/
+

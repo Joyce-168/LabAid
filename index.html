@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabAid AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .circle-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .circle-number:hover {
+            transform: scale(1.1);
+        }
+        .card-container {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .card-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        .footer {
+            background: linear-gradient(135deg, #1a2b4b, #2d3748);
+            color: white;
+            padding: 60px 20px;
+            margin-top: 80px;
+        }
+        .footer a {
+            color: #a0aec0;
+            text-decoration: none;
+            display: block;
+            margin: 8px 0;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: white;
+        }
+        #chatbot-section {
+            display: none;
+        }
+        .chat-message {
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 12px;
+            animation: fadeIn 0.3s ease;
+            max-width: 80%;
+        }
+        .user-message {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+        .assistant-message {
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+            margin-right: auto;
+            border-bottom-left-radius: 4px;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-link {
+            position: relative;
+            padding: 5px 0;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(59, 130, 246, 0.4);
+        }
+        .input-field {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .input-field:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-section {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
+            border-radius: 24px;
+            padding: 40px;
+            margin: 20px;
+        }
+        .download-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .download-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .download-card:hover::before {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Main UI Section -->
+    <div id="main-ui-section">
+        <!-- Header -->
+        <div class="flex justify-between items-center p-6 bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+            <div class="text-2xl font-bold gradient-text">LabAid AI</div>
+            <div>
+                <a href="#" class="nav-link ml-6 text-[#4a5b7d]">Features</a>
+                <a href="#" class="nav-link ml-6 text-[#4a5b7d]">How It Works</a>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero-section animate__animated animate__fadeIn">
+            <div class="text-center mt-12 mb-16">
+                <h1 class="text-6xl font-bold mb-5 gradient-text animate__animated animate__fadeInDown">AI-Powered Lab Troubleshooting</h1>
+                <p class="text-xl max-w-3xl mx-auto leading-relaxed animate__animated animate__fadeInUp">
+                    Instantly diagnose and resolve equipment issues with our intelligent AI assistant. 
+                    Get step-by-step solutions, maintenance tips, and expert guidance 24/7.
+                </p>
+                <button onclick="showChatbot()" class="mt-8 btn-primary text-white px-8 py-4 rounded-lg text-lg font-semibold animate__animated animate__fadeInUp">
+                    Start Chatbot
+                </button>
+            </div>
+        </div>
+
+        <!-- How It Works Section -->
+        <div class="text-center mt-20 mb-16 animate__animated animate__fadeIn">
+            <h2 class="text-4xl font-bold mb-5 gradient-text">How It Works</h2>
+            <p class="text-lg max-w-2xl mx-auto mb-16">Get your equipment back online in three simple steps</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
+                <div class="card-container animate__animated animate__fadeInLeft">
+                    <div class="circle-number">1</div>
+                    <h3 class="text-xl font-semibold mb-3">Describe the Issue</h3>
+                    <p class="text-gray-600">Simply tell our AI what's wrong with your equipment. Use natural language - no technical jargon required.</p>
+                </div>
+                <div class="card-container animate__animated animate__fadeInUp">
+                    <div class="circle-number">2</div>
+                    <h3 class="text-xl font-semibold mb-3">Get AI Analysis</h3>
+                    <p class="text-gray-600">Our advanced AI analyzes your description and equipment type to provide accurate diagnosis and solutions.</p>
+                </div>
+                <div class="card-container animate__animated animate__fadeInRight">
+                    <div class="circle-number">3</div>
+                    <h3 class="text-xl font-semibold mb-3">Follow the Steps</h3>
+                    <p class="text-gray-600">Receive detailed, step-by-step instructions with visual aids to resolve the issue quickly and safely.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Resources Section -->
+        <div class="text-center mt-20 mb-16 animate__animated animate__fadeIn">
+            <h2 class="text-4xl font-bold mb-5 gradient-text">Download Resources</h2>
+            <p class="text-lg max-w-2xl mx-auto mb-10">
+                Access comprehensive guides, manuals, and troubleshooting documentation for your lab equipment.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
+                <div class="card-container download-card animate__animated animate__fadeInLeft">
+                    <h4 class="text-2xl font-semibold mb-3">📄 Equipment Manual</h4>
+                    <p class="text-gray-600">Complete user manual for lab equipment operation and safety guidelines.</p>
+                    <p class="text-sm text-gray-500 mt-2">PDF • 2.4 MB</p>
+                    <a href="https://example.com/manual.pdf" class="mt-4 inline-block btn-primary text-white px-6 py-3 rounded-lg font-semibold">
+                        Download
+                    </a>
+                </div>
+                <div class="card-container download-card animate__animated animate__fadeInUp">
+                    <h4 class="text-2xl font-semibold mb-3">🔧 Troubleshooting Guide</h4>
+                    <p class="text-gray-600">Step-by-step solutions for common equipment issues and error codes.</p>
+                    <p class="text-sm text-gray-500 mt-2">PDF • 1.8 MB</p>
+                    <a href="https://example.com/troubleshooting.pdf" class="mt-4 inline-block btn-primary text-white px-6 py-3 rounded-lg font-semibold">
+                        Download
+                    </a>
+                </div>
+                <div class="card-container download-card animate__animated animate__fadeInRight">
+                    <h4 class="text-2xl font-semibold mb-3">🗓️ Maintenance Schedule</h4>
+                    <p class="text-gray-600">Recommended maintenance timeline and procedures for optimal performance.</p>
+                    <p class="text-sm text-gray-500 mt-2">PDF • 0.9 MB</p>
+                    <a href="https://example.com/maintenance.pdf" class="mt-4 inline-block btn-primary text-white px-6 py-3 rounded-lg font-semibold">
+                        Download
+                    </a>
+                </div>
+            </div>
+
+            <a href="#" class="block text-center mt-8 text-lg text-blue-500 hover:text-blue-600 transition-colors duration-300">
+                View All Documents →
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="flex justify-center flex-wrap mb-8">
+                <div class="w-48 mx-5">
+                    <h4 class="text-white text-lg font-semibold mb-4">Product</h4>
+                    <a href="#">Features</a>
+                    <a href="#">API</a>
+                    <a href="#">Documentation</a>
+                </div>
+                <div class="w-48 mx-5">
+                    <h4 class="text-white text-lg font-semibold mb-4">Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Status</a>
+                    <a href="#">Community</a>
+                </div>
+                <div class="w-48 mx-5">
+                    <h4 class="text-white text-lg font-semibold mb-4">Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Press</a>
+                </div>
+            </div>
+            <p class="text-center mt-8 text-gray-400">&copy; 2024 LabAid AI. All rights reserved.</p>
+            <p class="text-center mt-2">
+                <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a> | 
+                <a href="#" class="text-gray-400 hover:text-white">Terms of Service</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Chatbot Section -->
+    <div id="chatbot-section" class="max-w-4xl mx-auto p-4">
+        <div class="flex items-center mb-6 bg-white p-4 rounded-lg shadow-sm">
+            <button onclick="showMainUI()" class="text-blue-500 hover:text-blue-600 transition-colors duration-300">
+                ← Back to Main Page
+            </button>
+            <h2 class="text-2xl font-bold ml-4 gradient-text">AI Chatbot for Lab Troubleshooting</h2>
+        </div>
+
+        <div id="chat-messages" class="bg-white rounded-lg shadow-lg p-4 mb-4" style="height: 500px; overflow-y: auto;">
+            <!-- Chat messages will be inserted here -->
+        </div>
+
+        <div class="flex gap-2">
+            <input type="text" id="message-input" 
+                   class="flex-1 p-3 input-field rounded-lg focus:outline-none"
+                   placeholder="Ask me about your lab equipment issues...">
+            <button onclick="sendMessage()" 
+                    class="btn-primary text-white px-8 py-3 rounded-lg font-semibold">
+                Send
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let chatHistory = [];
+
+        function showChatbot() {
+            document.getElementById('main-ui-section').style.display = 'none';
+            document.getElementById('chatbot-section').style.display = 'block';
+        }
+
+        function showMainUI() {
+            document.getElementById('main-ui-section').style.display = 'block';
+            document.getElementById('chatbot-section').style.display = 'none';
+            chatHistory = [];
+            document.getElementById('chat-messages').innerHTML = '';
+        }
+
+        function addMessageToChat(role, content) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${role}-message`;
+            messageDiv.textContent = content;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('message-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            addMessageToChat('user', message);
+            input.value = '';
+
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        chat_history: chatHistory
+                    })
+                });
+
+                const data = await response.json();
+                chatHistory = data.chat_history;
+
+                const lastMessage = chatHistory[chatHistory.length - 1];
+                if (lastMessage.role === 'assistant') {
+                    addMessageToChat('assistant', lastMessage.content);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addMessageToChat('assistant', 'Sorry, there was an error processing your request.');
+            }
+        }
+
+        document.getElementById('message-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html> 
