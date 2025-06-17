@@ -3,10 +3,8 @@ title: LabAid
 emoji: ⚡
 colorFrom: green
 colorTo: indigo
-sdk: gradio
-sdk_version: 5.33.0
-app_file: app.py
-pinned: false
+sdk: docker
+app_port: 5000
 ---
 
 # LabAid - HPLC Instrument Troubleshooting Assistant
