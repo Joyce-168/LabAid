@@ -5,16 +5,17 @@ import sqlite3
 import datetime
 import chromadb
 
+from dotenv import load_dotenv
+# Load environment variables from .env file
+load_dotenv()
+
 from pypdf import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from together import Together
 from langchain_together import TogetherEmbeddings
-from dotenv import load_dotenv
 from chromadb.utils import embedding_functions
 from langchain_core.documents import Document
 
-# Load environment variables from .env file
-load_dotenv()
 
 def extract_text_from_pdf(pdf_path):
     """

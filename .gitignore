@@ -2,7 +2,7 @@
 
 venv/
 private/
-input/
+#input/
 
 # .gitignore 檔案內容範例
 
