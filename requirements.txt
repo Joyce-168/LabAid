@@ -4,8 +4,6 @@ together
 langchain-together
 python-dotenv
 chromadb
-fastapi
-uvicorn
 pydantic
 python-multipart
 gradio
@@ -15,3 +13,5 @@ huggingface_hub
 accelerate
 peft
 langchain-community
+flask
+gunicorn
